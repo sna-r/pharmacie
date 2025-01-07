@@ -1,0 +1,128 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* background-color: rgb(70, 70, 70); */
+}
+header{
+    background-color: #130077;
+    display: flex;
+    margin: 10px 1%;
+    border-radius: 50px;
+    justify-content:space-between;
+    box-shadow: 2px 2px 3px grey;
+}
+
+header ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+header ul a{
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: auto;
+}
+.header-list{
+    display: flex;
+    justify-content: center;
+}
+
+.header-list ul{
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 18px;
+    gap: 1;
+}
+
+.header-list ul a{
+    color: white;
+    background-color: #bbcc08; 
+    border: 1px solid white;
+    margin: 0px 5px;
+}
+.header-list ul li{
+    margin-top: 20px;
+    margin: 0px 5px;
+}
+
+header #search{ 
+    padding: 20px 20px;
+}
+
+header input,select,button{
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+header button{ 
+    border-radius: 15px;
+}
+header button{
+    background-color: #bbcc08;
+    color: white;
+}
+header .button-left{
+    margin-top: 20px;
+    border-radius: 25px;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px 5%;
+    border-radius: 20px;
+}
+main th{
+    background-color: #bbcc08;
+}
+main td{
+    border-top: 1px solid #bbcc08;
+    border-bottom: 1px solid #bbcc08;
+    padding: 10px;
+}
+main li{
+    color: #312999;
+    list-style: none;
+}
+main .td-center{
+    text-align: center;
+}
+header .link-left{
+    margin-top: 20px;
+    border-radius: 25px;
+}
+.btn-primary-itu{
+    background-color: #bbcc08;
+    border-color: #bbcc08;
+    color: white;
+}
+
+.modal-header-itu{
+    background-color: #312999;
+    color: white;
+}
+.text-primary-itu{
+    color: #bbcc08;
+}
+.text-secondary-itu {
+    color: #312999;
+}
+.td-secondary-itu {
+    background-color: #312999;
+    color: white;
+}
+
+.td-non-admis{
+    background-color: rgb(255, 179, 179);
+}
+
+#table-generale tr:hover{
+    background-color: rgb(240, 240, 240);
+}
+
