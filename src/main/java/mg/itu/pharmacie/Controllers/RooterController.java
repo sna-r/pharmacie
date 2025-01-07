@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class RooterController {
     @GetMapping("/")
-    public String home() { 
+    public String home() {
         return "resultat";
     }
 }
