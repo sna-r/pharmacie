@@ -1,13 +1,18 @@
--- ** VIEW liste produit
+-- ** VIEW liste 
+CREATE OR REPLACE VIEW v_produit_ctm AS
 SELECT
     p.id_produit,
     p.id_types_fk,
-
+    pc.id_categorie_fk,
+    pm.id_maladie_fk,
+    p.nom AS nom_produit,
+    t.nom AS nom_types,
+    m.nom AS nom_maladie,
+    c.nom AS nom_categorie
 FROM
     produit AS p
-JOIN produit_categorie ;
-
-SELECT 
-    * 
-FROM 
-    produit_categorie;
+JOIN produit_categorie AS pc ON p.id_produit = pc.id_produit_fk
+JOIN produit_maladie AS pm ON p.id_produit = pm.id_produit_fk
+JOIN maladie AS m ON pm.id_maladie_fk = m.id_maladie
+JOIN types AS t ON t.id_type = p.id_types_fk
+JOIN categorie AS c ON c.id_categorie = pc.id_categorie_fk;
