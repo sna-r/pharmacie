@@ -1,5 +1,5 @@
 
-function VenteProduit() {
+function displayVenteProduit() {
   let resultClass = ".result-venteProduit";
   let imageLoadUrl = "./../assets/images/Jumping letters.gif";
   let url = "/produitsCTM";

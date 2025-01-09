@@ -288,7 +288,7 @@
             displayMaladie();        
             displayTypes();
             displayCategorie();
-            displayProductCTM();
+            displayVenteProduit()
         };
         window.dataLayer = window.dataLayer || [];
 
