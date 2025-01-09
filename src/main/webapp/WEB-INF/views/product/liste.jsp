@@ -164,8 +164,8 @@
         // categorie
         var categorieSelectedPlace = document.querySelector('.categorie-selected');
         addCategorieSelected();
-        function addCategorieSelected(){
-            
+        function addCategorieSelected() {
+
             categorieSelectedPlace.innerHTML = ""
             console.log(categorieSelectedValue)
             console.log(categorieSelectedKey)
@@ -179,12 +179,12 @@
                 classResultDetails.setAttribute("class", "alert alert-secondary alert-dismissible fade show")
                 classResultDetails.setAttribute("role", "alert")
                 let resultValue = document.createElement("span");
-                resultValue.innerText =  categoryValue
+                resultValue.innerText = categoryValue
 
                 let buttonAnnulation = document.createElement("button");
                 buttonAnnulation.setAttribute("type", "button")
                 buttonAnnulation.setAttribute("class", "close")
-                buttonAnnulation.setAttribute("data-dismiss","alert")
+                buttonAnnulation.setAttribute("data-dismiss", "alert")
                 buttonAnnulation.setAttribute("aria-label", "Close")
                 buttonAnnulation.innerHTML = `<span aria-hidden="true">&times;</span>`
 
@@ -202,87 +202,87 @@
         }
 
         // maladie
-            var typtesSelectedPlace = document.querySelector('.typtes-selected');
-            addtyptesSelected();
-            function addTyptesSelected() {
+        var typesSelectedPlace = document.querySelector('.types-selected');
+        addTypesSelected();
+        function addTypesSelected() {
 
-                typtesSelectedPlace.innerHTML = ""
-                console.log(typtesSelectedValue)
-                console.log(typtesSelectedKey)
-                let i = 0
-                typtesSelectedValue.forEach((categoryValue, index) => {
-                    let classResult = document.createElement("div");
-                    classResult.setAttribute("class", "col-12 mb-4")
-                    classResult.setAttribute("class", "col-12 mb-4")
+            typesSelectedPlace.innerHTML = ""
+            console.log(typesSelectedValue)
+            console.log(typesSelectedKey)
+            let i = 0
+            typesSelectedValue.forEach((categoryValue, index) => {
+                let classResult = document.createElement("div");
+                classResult.setAttribute("class", "col-12 mb-4")
+                classResult.setAttribute("class", "col-12 mb-4")
 
-                    let classResultDetails = document.createElement("div");
-                    classResultDetails.setAttribute("class", "alert alert-secondary alert-dismissible fade show")
-                    classResultDetails.setAttribute("role", "alert")
-                    let resultValue = document.createElement("span");
-                    resultValue.innerText = categoryValue
+                let classResultDetails = document.createElement("div");
+                classResultDetails.setAttribute("class", "alert alert-secondary alert-dismissible fade show")
+                classResultDetails.setAttribute("role", "alert")
+                let resultValue = document.createElement("span");
+                resultValue.innerText = categoryValue
 
-                    let buttonAnnulation = document.createElement("button");
-                    buttonAnnulation.setAttribute("type", "button")
-                    buttonAnnulation.setAttribute("class", "close")
-                    buttonAnnulation.setAttribute("data-dismiss", "alert")
-                    buttonAnnulation.setAttribute("aria-label", "Close")
-                    buttonAnnulation.innerHTML = `<span aria-hidden="true">&times;</span>`
+                let buttonAnnulation = document.createElement("button");
+                buttonAnnulation.setAttribute("type", "button")
+                buttonAnnulation.setAttribute("class", "close")
+                buttonAnnulation.setAttribute("data-dismiss", "alert")
+                buttonAnnulation.setAttribute("aria-label", "Close")
+                buttonAnnulation.innerHTML = `<span aria-hidden="true">&times;</span>`
 
-                    buttonAnnulation.addEventListener("click", () => {
-                        typtesSelectedKey.splice(index, 1)
-                        typtesSelectedValue.splice(index, 1)
-                        addTyptesSelected()
-                    })
-
-                    classResultDetails.appendChild(resultValue);
-                    classResultDetails.appendChild(buttonAnnulation)
-                    classResult.append(classResultDetails)
-                    typtesSelectedPlace.appendChild(classResult);
+                buttonAnnulation.addEventListener("click", () => {
+                    typesSelectedKey.splice(index, 1)
+                    typesSelectedValue.splice(index, 1)
+                    addTypesSelected()
                 })
-            }
 
-            // maladie
-                var maladieSelectedPlace = document.querySelector('.maladie-selected');
-                addmaladieSelected();
-                function addMaladieSelected() {
+                classResultDetails.appendChild(resultValue);
+                classResultDetails.appendChild(buttonAnnulation)
+                classResult.append(classResultDetails)
+                typesSelectedPlace.appendChild(classResult);
+            })
+        }
 
-                    maladieSelectedPlace.innerHTML = ""
-                    console.log(maladieSelectedValue)
-                    console.log(maladieSelectedKey)
-                    let i = 0
-                    maladieSelectedValue.forEach((categoryValue, index) => {
-                        let classResult = document.createElement("div");
-                        classResult.setAttribute("class", "col-12 mb-4")
-                        classResult.setAttribute("class", "col-12 mb-4")
+        // maladie
+        var maladieSelectedPlace = document.querySelector('.maladie-selected');
+        addMaladieSelected();
+        function addMaladieSelected() {
 
-                        let classResultDetails = document.createElement("div");
-                        classResultDetails.setAttribute("class", "alert alert-secondary alert-dismissible fade show")
-                        classResultDetails.setAttribute("role", "alert")
-                        let resultValue = document.createElement("span");
-                        resultValue.innerText = categoryValue
+            maladieSelectedPlace.innerHTML = ""
+            console.log(maladieSelectedValue)
+            console.log(maladieSelectedKey)
+            let i = 0
+            maladieSelectedValue.forEach((categoryValue, index) => {
+                let classResult = document.createElement("div");
+                classResult.setAttribute("class", "col-12 mb-4")
+                classResult.setAttribute("class", "col-12 mb-4")
 
-                        let buttonAnnulation = document.createElement("button");
-                        buttonAnnulation.setAttribute("type", "button")
-                        buttonAnnulation.setAttribute("class", "close")
-                        buttonAnnulation.setAttribute("data-dismiss", "alert")
-                        buttonAnnulation.setAttribute("aria-label", "Close")
-                        buttonAnnulation.innerHTML = `<span aria-hidden="true">&times;</span>`
+                let classResultDetails = document.createElement("div");
+                classResultDetails.setAttribute("class", "alert alert-secondary alert-dismissible fade show")
+                classResultDetails.setAttribute("role", "alert")
+                let resultValue = document.createElement("span");
+                resultValue.innerText = categoryValue
 
-                        buttonAnnulation.addEventListener("click", () => {
-                            maladieSelectedKey.splice(index, 1)
-                            maladieSelectedValue.splice(index, 1)
-                            addMaladieSelected()
-                        })
+                let buttonAnnulation = document.createElement("button");
+                buttonAnnulation.setAttribute("type", "button")
+                buttonAnnulation.setAttribute("class", "close")
+                buttonAnnulation.setAttribute("data-dismiss", "alert")
+                buttonAnnulation.setAttribute("aria-label", "Close")
+                buttonAnnulation.innerHTML = `<span aria-hidden="true">&times;</span>`
 
-                        classResultDetails.appendChild(resultValue);
-                        classResultDetails.appendChild(buttonAnnulation)
-                        classResult.append(classResultDetails)
-                        maladieSelectedPlace.appendChild(classResult);
-                    })
-                }
+                buttonAnnulation.addEventListener("click", () => {
+                    maladieSelectedKey.splice(index, 1)
+                    maladieSelectedValue.splice(index, 1)
+                    addMaladieSelected()
+                })
+
+                classResultDetails.appendChild(resultValue);
+                classResultDetails.appendChild(buttonAnnulation)
+                classResult.append(classResultDetails)
+                maladieSelectedPlace.appendChild(classResult);
+            })
+        }
 
         var selectCategorie = document.querySelector('.select-categorie');
-        selectCategorie.addEventListener('change', ()=>{
+        selectCategorie.addEventListener('change', () => {
             let selectedOptionCategorie = selectCategorie.options[selectCategorie.selectedIndex]
             categorieSelectedKey.push(selectedOptionCategorie.value);
             categorieSelectedValue.push(selectedOptionCategorie.text);
@@ -291,7 +291,7 @@
 
 
         window.onload = function () {
-            displayMaladie();        
+            displayMaladie();
             displayTypes();
             displayCategorie();
             displayProductCTM();
@@ -303,7 +303,7 @@
         }
         gtag('js', new Date());
         gtag('config', 'UA-56159088-1');
-        
+
     </script>
 </body>
 

@@ -73,9 +73,9 @@
                         <div class="col-md-12 my-4">
                             <div class="card shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title">Liste de tout les produits</h5>
+                                    <h5 class="card-title">Liste de tout les ventes de produit</h5>
                                     <p class="card-text"></p>
-                                    <div class="result-productCTM">
+                                    <div class="result-venteProduit">
                                    
                                     </div>
 
@@ -147,7 +147,7 @@
 
     </script>
     <script src="${pageContext.request.contextPath}/assets/js/MyJS/resultatTable.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/js/MyJS/ProduitCTM.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/MyJS/VenteProduit.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/MyJS/resultatSelect.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/MyJS/MaladieSelect.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/MyJS/CategorieSelect.js"></script>
