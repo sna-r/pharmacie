@@ -1,10 +1,10 @@
 -- ** Types **
 INSERT INTO types(nom) VALUES
-('Comprimé'),
+('Comprime'),
 ('Sirop'),
 ('Injection'),
 ('Pommade'),
-('Gélules'),
+('Gelules'),
 ('Poudre'),
 ('Suppositoire'),
 ('Inhalateur'),
@@ -17,19 +17,19 @@ INSERT INTO categorie(nom) VALUES
 ('Enfant'),
 ('Adolescent'),
 ('Adulte'),
-('Personne âgée'),
+('Personne âgee'),
 ('Grossesse'),
 ('Allaitement'),
 ('Chronique'),
-('Aiguë'),
-('Saisonnière');
+('Aigue'),
+('Saisonniere');
 
 -- ** Fournisseur **
 INSERT INTO fournisseur(nom, adresse) VALUES
 ('Pharma-Global', 'Lot 45, Antananarivo'),
 ('BioCare', 'Rue 12, Tamatave'),
 ('HealthTech', 'Avenue 22, Majunga'),
-('MadaPharma', 'Rue de la Santé, Fianarantsoa'),
+('MadaPharma', 'Rue de la Sante, Fianarantsoa'),
 ('VitaHealth', 'Boulevard 10, Diego Suarez'),
 ('GreenMed', 'Lot 98, Tulear'),
 ('SanoMada', 'Route 5, Morondava'),
@@ -38,17 +38,17 @@ INSERT INTO fournisseur(nom, adresse) VALUES
 ('ProHealth', 'Lot 66, Fort Dauphin');
 
 -- ** Produit **
-INSERT INTO produit(nom, id_types_fk, notice, expiration, id_fournisseur_fk) VALUES
-('Doliprane', 'TYP0001', 'Soulage les douleurs et fièvres', '2026-01-15 12:00:00', 'FRN0001'),
-('Ibuprofène', 'TYP0002', 'Anti-inflammatoire non stéroïdien', '2025-10-10 12:00:00', 'FRN0002'),
-('Amoxicilline', 'TYP0003', 'Antibiotique large spectre', '2025-06-20 12:00:00', 'FRN0003'),
-('Vitamine C', 'TYP0004', 'Renforce le système immunitaire', '2026-12-01 12:00:00', 'FRN0004'),
-('Oméprazole', 'TYP0005', 'Traitement des ulcères gastriques', '2025-09-15 12:00:00', 'FRN0005'),
-('Paracétamol', 'TYP0001', 'Efficace contre la douleur', '2026-02-20 12:00:00', 'FRN0006'),
-('Hydrocortisone', 'TYP0006', 'Traitement des inflammations', '2025-11-30 12:00:00', 'FRN0007'),
-('Salbutamol', 'TYP0008', 'Traitement des crises d asthme', '2025-04-12 12:00:00', 'FRN0008'),
-('Lorazépam', 'TYP0009', 'Réduction de l anxiété', '2026-07-10 12:00:00', 'FRN0009'),
-('Insuline', 'TYP0003', 'Traitement du diabète', '2026-05-25 12:00:00', 'FRN0010');
+INSERT INTO produit(nom, id_types_fk, notice, expiration, id_fournisseur_fk, prix_unitaire) VALUES
+('Doliprane', 'TYP0001', 'Soulage les douleurs et fievres', '2026-01-15 12:00:00', 'FRN0001', 5000),
+('Ibuprofene', 'TYP0002', 'Anti-inflammatoire non steroidien', '2025-10-10 12:00:00', 'FRN0002', 4000),
+('Amoxicilline', 'TYP0003', 'Antibiotique large spectre', '2025-06-20 12:00:00', 'FRN0003',3000),
+('Vitamine C', 'TYP0004', 'Renforce le systeme immunitaire', '2026-12-01 12:00:00', 'FRN0004',14000),
+('Omeprazole', 'TYP0005', 'Traitement des ulceres gastriques', '2025-09-15 12:00:00', 'FRN0005',3000),
+('Paracetamol', 'TYP0001', 'Efficace contre la douleur', '2026-02-20 12:00:00', 'FRN0006',5000),
+('Hydrocortisone', 'TYP0006', 'Traitement des inflammations', '2025-11-30 12:00:00', 'FRN0007',6700),
+('Salbutamol', 'TYP0008', 'Traitement des crises d asthme', '2025-04-12 12:00:00', 'FRN0008',20000),
+('Lorazepam', 'TYP0009', 'Reduction de l anxiete', '2026-07-10 12:00:00', 'FRN0009',12000),
+('Insuline', 'TYP0003', 'Traitement du diabete', '2026-05-25 12:00:00', 'FRN0010',17000);
 
 -- ** Maladie **
 INSERT INTO maladie(nom) VALUES
@@ -57,10 +57,10 @@ INSERT INTO maladie(nom) VALUES
 ('Otite'),
 ('Sinusite'),
 ('Bronchite'),
-('Diabète'),
+('Diabete'),
 ('Hypertension'),
 ('Dermatite'),
-('Anxiété'),
+('Anxiete'),
 ('Asthme');
 
 -- ** Produit Maladie **
@@ -91,16 +91,16 @@ INSERT INTO produit_categorie(id_produit_fk, id_categorie_fk) VALUES
 
 -- ** Symptome **
 INSERT INTO symptome(nom) VALUES
-('Fièvre'),
+('Fievre'),
 ('Maux de gorge'),
 ('Douleurs auriculaires'),
 ('Congestion nasale'),
-('Toux sèche'),
+('Toux seche'),
 ('Soif excessive'),
 ('Maux de tête'),
-('Démangeaisons'),
+('Demangeaisons'),
 ('Insomnie'),
-('Difficultés respiratoires');
+('Difficultes respiratoires');
 
 -- ** Maladie Symptome **
 INSERT INTO maladie_symptome(id_symptome_fk, id_maladie_fk) VALUES
@@ -114,3 +114,60 @@ INSERT INTO maladie_symptome(id_symptome_fk, id_maladie_fk) VALUES
 ('SYMP0008', 'MAL0008'),
 ('SYMP0009', 'MAL0009'),
 ('SYMP0010', 'MAL0010');
+
+
+-- ** 09 / 01 / 2025
+-- Insérer 50 ventes avec des données variées
+INSERT INTO
+    vente (id_produit_fk, nombre)
+VALUES
+    ('PROD0001', 3),
+    ('PROD0002', 5),
+    ('PROD0003', 2),
+    ('PROD0004', 7),
+    ('PROD0005', 1),
+    ('PROD0006', 10),
+    ('PROD0007', 4),
+    ('PROD0008', 6),
+    ('PROD0009', 8),
+    ('PROD0010', 9),
+    ('PROD0001', 1),
+    ('PROD0002', 3),
+    ('PROD0003', 5),
+    ('PROD0004', 2),
+    ('PROD0005', 4),
+    ('PROD0006', 6),
+    ('PROD0007', 2),
+    ('PROD0008', 7),
+    ('PROD0009', 10),
+    ('PROD0010', 5),
+    ('PROD0001', 2),
+    ('PROD0002', 6),
+    ('PROD0003', 3),
+    ('PROD0004', 1),
+    ('PROD0005', 8),
+    ('PROD0006', 7),
+    ('PROD0007', 9),
+    ('PROD0008', 10),
+    ('PROD0009', 4),
+    ('PROD0010', 5),
+    ('PROD0001', 7),
+    ('PROD0002', 2),
+    ('PROD0003', 10),
+    ('PROD0004', 8),
+    ('PROD0005', 6),
+    ('PROD0006', 4),
+    ('PROD0007', 5),
+    ('PROD0008', 3),
+    ('PROD0009', 7),
+    ('PROD0010', 1),
+    ('PROD0001', 9),
+    ('PROD0002', 4),
+    ('PROD0003', 8),
+    ('PROD0004', 6),
+    ('PROD0005', 2),
+    ('PROD0006', 5),
+    ('PROD0007', 10),
+    ('PROD0008', 7),
+    ('PROD0009', 3),
+    ('PROD0010', 8);

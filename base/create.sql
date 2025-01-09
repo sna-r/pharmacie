@@ -1,3 +1,4 @@
+-- ** 07 / 01 / 2025
 CREATE DATABASE pharmacie;
 \c pharmacie;
 
@@ -74,7 +75,7 @@ CREATE TABLE produit(
     id_types_fk VARCHAR REFERENCES types(id_type),
     notice VARCHAR(255) NOT NULL,
     expiration timestamp,
-    id_fournisseur_fk VARCHAR REFERENCES fournisseur(id_fournisseur)
+    id_fournisseur_fk VARCHAR REFERENCES fournisseur(id_fournisseur),
 );
 
 CREATE TABLE produit_maladie(
@@ -116,3 +117,17 @@ CREATE TABLE maladie_symptome(
 );
 
 
+-- ** 09 / 01 / 2025
+ALTER TABLE produit ADD prix_unitaire double precision;
+
+CREATE SEQUENCE seq_vente;
+CREATE TABLE vente(
+    id_vente VARCHAR PRIMARY KEY DEFAULT custom_seq(
+        'MS' :: character varying,
+        'seq_vente' :: character varying,
+        4
+    ) NOT NULL,
+    id_produit_fk VARCHAR REFERENCES produit(id_produit),
+    date_vente timestamp default CURRENT_TIMESTAMP,
+    nombre int
+);
