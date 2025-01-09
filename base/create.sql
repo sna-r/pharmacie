@@ -75,7 +75,7 @@ CREATE TABLE produit(
     id_types_fk VARCHAR REFERENCES types(id_type),
     notice VARCHAR(255) NOT NULL,
     expiration timestamp,
-    id_fournisseur_fk VARCHAR REFERENCES fournisseur(id_fournisseur),
+    id_fournisseur_fk VARCHAR REFERENCES fournisseur(id_fournisseur)
 );
 
 CREATE TABLE produit_maladie(

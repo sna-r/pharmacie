@@ -3,8 +3,8 @@
     <ip>localhost</ip>
     <port>5432</port>
     <databaseName>pharmacie</databaseName>
-    <userName>postgres</userName>
-    <password>mdpprom15</password>
+    <userName>pharmacie</userName>
+    <password>pharmacie</password>
 </connectionConfig>
 
 
