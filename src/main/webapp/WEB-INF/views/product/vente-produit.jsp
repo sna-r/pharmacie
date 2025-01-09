@@ -195,7 +195,7 @@
             })
         }
 
-        // maladie
+        // tyoe
             var typesSelectedPlace = document.querySelector('.types-selected');
             addTypesSelected();
             function addTypesSelected() {
@@ -282,6 +282,14 @@
             categorieSelectedValue.push(selectedOptionCategorie.text);
             addCategorieSelected();
         })
+        var selectTypes = document.querySelector('.select-types');
+            selectTypes.addEventListener('change', () => {
+                let selectedOptionTypes = selectTypes.options[selectTypes.selectedIndex]
+                typesSelectedKey.push(selectedOptionTypes.value);
+                typesSelectedValue.push(selectedOptionTypes.text);
+                addTypesSelected();
+            })
+
 
 
         window.onload = function () {

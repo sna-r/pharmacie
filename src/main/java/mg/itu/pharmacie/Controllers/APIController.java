@@ -17,6 +17,7 @@ import mg.itu.pharmacie.Models.Tables.Maladie;
 import mg.itu.pharmacie.Models.Tables.Types;
 import mg.itu.pharmacie.Models.Views.VProduitCTM;
 import mg.itu.pharmacie.Models.Views.VVenteProduit;
+import mg.itu.pharmacie.Models.Views.VVenteProduitDetail;
 
 @RestController
 public class APIController {
@@ -184,7 +185,6 @@ public class APIController {
         String[] type = payload != null && payload.containsKey("type")
                 ? payload.getOrDefault("type", new String[0])
                 : new String[0];
-        
 
         Map<String, Object> resultat = new HashMap<>();
         int status = 0;
@@ -195,6 +195,48 @@ public class APIController {
             connection = MyConnection.connectDefault();
             connection.setAutoCommit(false);
             VVenteProduit[] produits = (VVenteProduit[]) DB.getList(new VVenteProduit(), connection);
+            resultat.put("data", produits);
+            status = 200;
+            titre = "Prendre tout les ventes de produits reussi";
+            message = "Success , voila les ventes ";
+        } catch (Exception e) {
+            status = 500;
+            titre = "Prendre tout les produits echoué";
+            message = e.getMessage();
+            e.printStackTrace();
+            if (connection != null) {
+                connection.rollback();
+            }
+        } finally {
+            resultat.put("status", status);
+            resultat.put("titre", titre);
+            resultat.put("message", message);
+            if (!(connection == null)) {
+                connection.close();
+            }
+        }
+        return resultat;
+    }
+    
+    @GetMapping("vente-produit-detail")
+    public Map<String, Object> getAllVenteProduitDetail(@RequestBody(required = false) Map<String, String[]> payload)
+            throws Exception {
+        String[] categorie = payload != null && payload.containsKey("categorie")
+                ? payload.getOrDefault("categorie", new String[0])
+                : new String[0];
+        String[] type = payload != null && payload.containsKey("type")
+                ? payload.getOrDefault("type", new String[0])
+                : new String[0];
+
+        Map<String, Object> resultat = new HashMap<>();
+        int status = 0;
+        String titre = null;
+        String message = null;
+        Connection connection = null;
+        try {
+            connection = MyConnection.connectDefault();
+            connection.setAutoCommit(false);
+            VVenteProduitDetail[] produits = (VVenteProduitDetail[]) DB.getList(new VVenteProduitDetail(), connection);
             resultat.put("data", produits);
             status = 200;
             titre = "Prendre tout les ventes de produits reussi";

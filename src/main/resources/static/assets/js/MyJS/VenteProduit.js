@@ -2,17 +2,18 @@
 function displayVenteProduit() {
   let resultClass = ".result-venteProduit";
   let imageLoadUrl = "./../assets/images/Jumping letters.gif";
-  let url = "/produitsCTM";
-  let titleTable = ["Nom", "Notice", "Type", "Categorie", "Maladie"];
+  let url = "/vente-produit";
+  let titleTable = ["Nom", "Type", "Categorie", "Nombre", "Prix Totale"];
   let keyResponse = [
     "nom_produit",
-    "notice",
     "nom_types",
     "nom_categorie",
-    "nom_maladie",
+    "nombre",
+    "prixTotale"
   ];
   let form = new FormData();
-  form.append("categorie", ["Rakoto", "Rabe", "Rasoa"]);
+  form.append("categorie", categorieSelectedKey);
+  form.append("types", typesSelectedKey);
   let classTable = "table table-hover"
   displayResultat(
     resultClass,
