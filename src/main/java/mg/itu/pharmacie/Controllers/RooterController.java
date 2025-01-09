@@ -9,4 +9,9 @@ public class RooterController {
     public String home() {
         return "product/liste";
     }
+
+    @GetMapping("/vente-product")
+    public String venteProduct() {
+        return "product/vente-produit";
+    }
 }

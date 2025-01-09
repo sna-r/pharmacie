@@ -30,7 +30,7 @@
     <!-- nav bar -->
     <div class="w-100 mb-4 d-flex">
       <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="#">
-        <b style="color:rgb(44, 238, 47)">Pharmacie</b>
+        <b style="color:rgb(0, 255, 4)">Pharmacie</b>
       </a>
     </div>
     <!-- <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -41,63 +41,29 @@
         </a>
       </li>
     </ul> -->
-    <!-- <p class="text-muted nav-heading mt-4 mb-1">
-      <span>Pages</span>
+    <p class="text-muted nav-heading mt-4 mb-1">
+      <span>Apps</span>
     </p>
     <ul class="navbar-nav flex-fill w-100 mb-2">
-      <li class="nav-item dropdown">
-        <a href="liste-etape-admin" class="nav-link">
-          <i class="fe fe-file"></i>
-          <span class="ml-3 item-text">Liste des etapes</span>
+      <li class="nav-item w-100">
+        <a class="nav-link" href="/">
+          <!-- <i class="fe fe-calendar fe-16"></i> -->
+          <span class="ml-3 item-text">Liste Produit</span>
         </a>
       </li>
       <li class="nav-item dropdown">
-        <a href="/classement-generale-equipe" class="nav-link">
-          <i class="fe fe-file"></i>
-          <span class="ml-3 item-text">Classement equipe</span>
+        <a href="#contact" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+          <!-- <i class="fe fe-chart fe-16"></i> -->
+          <span class="ml-3 item-text">Vente</span>
         </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a href="/penalite" class="nav-link">
-          <i class="fe fe-file"></i>
-          <span class="ml-3 item-text">Penalite</span>
-        </a>
-      </li>
-      <p class="text-muted nav-heading mt-4 mb-1">
-        <span>Import</span>
-      </p>
-      <li class="nav-item dropdown">
-        <a href="/import-point" class="nav-link">
-          <i class="fe fe-file"></i>
-          <span class="ml-3 item-text">Point</span>
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a href="/import-resulat-etape" class="nav-link">
-          <i class="fe fe-file"></i>
-          <span class="ml-3 item-text">Etape et Resultat</span>
-        </a>
-      </li>
-
-      <p class="text-muted nav-heading mt-4 mb-1">
-        <span>Plus</span>
-      </p>
-      <br>
-      <li class="nav-item dropdown">
-        <a href="/generate-categorie" class="btn btn-outline-warning col-12">
-          <i class="fe fe-tool"></i>
-          <span class="ml-3 item-text">Generer categorie</span>
-        </a>
-      </li>
-      <br>
-      <li class="nav-item dropdown">
-        <a href="/initialize-base" class="btn btn-outline-danger col-12">
-          <i class="fe fe-rotate-ccw"></i>
-          <span class="ml-3 item-text">Reinitialise le base</span>
-        </a>
+        <ul class="collapse list-unstyled pl-4 w-100" id="contact">
+          <a class="nav-link pl-3" href="#"><span class="ml-1">Ajoute</span></a>
+          <a class="nav-link pl-3" href="#"><span class="ml-1">Analyse</span></a>
+          <a class="nav-link pl-3" href="/vente-product"><span class="ml-1">Liste</span></a>
+        </ul>
       </li>
       
-    </ul> -->
+    </ul>
 
   </nav>
 </aside>
