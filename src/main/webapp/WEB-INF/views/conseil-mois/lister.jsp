@@ -41,7 +41,6 @@
                                         <div class="card-body">
                                             <p class="mb-2"><strong></strong></p>
                                             <div class="form-row">
-                                               
                                                 <div class="form-group col-8">
                                                     <input type="Date" id="example-Date" name="date"
                                                         class="form-control">
