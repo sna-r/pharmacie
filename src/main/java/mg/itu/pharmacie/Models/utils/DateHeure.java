@@ -356,6 +356,14 @@ public class DateHeure {
 		return (int) differenceInSeconds;
 	}
 	
+
+	// date heure aujourd'hui
+	public static DateHeure getTodayDateHeure() {
+		DateHeure today = new DateHeure();
+		today.setDate(LocalDate.now());
+		today.setTime(LocalTime.now());
+		return today;
+	}
 	
 	// constructeurs
 	public DateHeure(String date, String heure) throws Exception{

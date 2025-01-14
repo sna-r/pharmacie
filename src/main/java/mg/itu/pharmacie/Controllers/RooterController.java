@@ -33,9 +33,19 @@ public class RooterController {
     }
 
     @GetMapping("/liste-conseil-mois")
-    public String liste_conseil(Model model) throws Exception {
+    public String liste_conseil(@RequestParam(defaultValue = "") String date, Model model) throws Exception {
         Connection connection = MyConnection.connectDefault();
-        VListeConseil[] listeConseil = (VListeConseil[]) DB.getList(new VListeConseil(), connection);
+        DateHeure now = null;
+        if (date.length() > 0) {
+            now = new DateHeure(date + "-01", "00:00:00");
+        } else {
+            now = DateHeure.getTodayDateHeure();
+        }
+
+        int mois = now.getTypeMois();
+        int anne = now.getYear();
+        String where = " WHERE EXTRACT(MONTH FROM date_conseil_mois) = "+ mois +" AND EXTRACT(YEAR FROM date_conseil_mois) = " + anne;
+        VListeConseil[] listeConseil = (VListeConseil[]) DB.getList(new VListeConseil(), where , connection);
         model.addAttribute("listeConseil", listeConseil);
         return "conseil-mois/lister";
     }

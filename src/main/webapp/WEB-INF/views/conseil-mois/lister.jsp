@@ -43,7 +43,7 @@
                                             <div class="form-row">
                                                
                                                 <div class="form-group col-8">
-                                                    <input type="Date" id="example-Date" name="date"
+                                                    <input type="Date" id="example-Date" name="month"
                                                         class="form-control">
                                                 </div>
 
