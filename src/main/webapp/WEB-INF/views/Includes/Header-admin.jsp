@@ -62,6 +62,16 @@
           <a class="nav-link pl-3" href="/vente-product"><span class="ml-1">Liste</span></a>
         </ul>
       </li>
+      <li class="nav-item dropdown">
+        <a href="#conseil" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+          <!-- <i class="fe fe-chart fe-16"></i> -->
+          <span class="ml-3 item-text">Conseil du mois</span>
+        </a>
+        <ul class="collapse list-unstyled pl-4 w-100" id="conseil">
+          <a class="nav-link pl-3" href="/add-conseil-mois"><span class="ml-1">Ajoute</span></a>
+          <a class="nav-link pl-3" href="/liste-conseil-mois"><span class="ml-1">Liste</span></a>
+        </ul>
+      </li>
       
     </ul>
 

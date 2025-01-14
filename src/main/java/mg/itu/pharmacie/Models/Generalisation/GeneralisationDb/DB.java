@@ -53,6 +53,103 @@ public class DB {
         return result;
     }
     // ** get list generalise
+    // ** get list generalise
+    public static Object getList(Object table, String where, Connection connection) throws Exception {
+        String[][] infoTable = DB.generateParamQueryByClass(table);
+        String nameTable = infoTable[0][0];
+        String attrs = "";
+        int i = 0;
+        for (String attrTable : infoTable[2]) {
+            if (i > 0)
+                attrs = attrs + " , ";
+            attrs = attrs + attrTable;
+            i++;
+        }
+        i = 0;
+
+        Class<?> classTable = table.getClass();
+        String query = "SELECT " + attrs + " FROM " + nameTable + " " + where ;
+        Object[] result;
+        int size = 0;
+        PreparedStatement statement = null;
+        ResultSet resultset = null;
+        boolean statementOpen = false;
+        boolean resultsetOpen = false;
+        try {
+            if (connection == null)
+                throw new Exception("Get by Id error du class '" + table.getClass().getSimpleName()
+                        + "' :  Le connexion qui prend les '" + nameTable + "' n'est pas ouvert");
+
+            statement = connection.prepareStatement(query);
+            statementOpen = true;
+            resultset = statement.executeQuery();
+            while (resultset.next()) {
+                size++;
+            }
+            if (size == 0) {
+                result = (Object[]) Array.newInstance(classTable, 0);
+            } else {
+                result = (Object[]) Array.newInstance(classTable, size);
+                i = 0;
+                resultset = statement.executeQuery();
+                resultsetOpen = true;
+                int j = 0;
+                while (resultset.next()) {
+                    Constructor<?> constructor = classTable.getConstructor();
+                    result[i] = constructor.newInstance();
+                    for (Field field : result[i].getClass().getDeclaredFields()) {
+                        j = 0;
+                        for (String nameAttribut : infoTable[1]) {
+                            if (field.getName().compareToIgnoreCase(nameAttribut) == 0) {
+                                field.setAccessible(true);
+                                // if ((field.isAnnotationPresent(PrimaryKeyDb.class))) {
+
+                                // } else {
+                                if (field.getType().getName().equals("int")) {
+                                    int value = resultset.getInt(infoTable[2][j]);
+                                    field.set(result[i], value);
+                                } else if (field.getType().getName().equals("java.lang.String")) {
+                                    String value = resultset.getString(infoTable[2][j]);
+                                    field.set(result[i], value);
+                                } else if (field.getType().getName().equals("boolean")) {
+                                    boolean value = resultset.getBoolean(infoTable[2][j]);
+                                    field.set(result[i], value);
+                                } else if (field.getType().getName().equals("double")) {
+                                    double value = resultset.getDouble(infoTable[2][j]);
+                                    field.set(result[i], value);
+                                } else if (field.isAnnotationPresent(ForeignKeyDb.class)) {
+                                    Constructor<?> construtorField = (field.getType()).getConstructor();
+                                    field.set(result[i], getById(construtorField.newInstance(), connection));
+                                } else {
+                                    throw new Exception("Get by Id error du class '"
+                                            + table.getClass().getSimpleName()
+                                            + "' :  Type non pris en charge pour le champ " + field.getName());
+                                }
+                                // }
+                            }
+                            j++;
+                        }
+                    }
+                    i++;
+                }
+            }
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        } finally {
+            if (statementOpen) {
+                statement.close();
+            }
+            if (resultsetOpen) {
+                resultset.close();
+            }
+        }
+
+        return result;
+    }
+
     public static Object getList(Object table, Connection connection) throws Exception {
         String[][] infoTable = DB.generateParamQueryByClass(table);
         String nameTable = infoTable[0][0];
@@ -148,6 +245,7 @@ public class DB {
 
         return result;
     }
+    
 
     // ** get by id
     public static Object getById(Object table, Connection connection) throws Exception {

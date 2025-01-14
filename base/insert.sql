@@ -171,3 +171,8 @@ VALUES
     ('PROD0008', 7),
     ('PROD0009', 3),
     ('PROD0010', 8);
+
+
+-- conseil du mois
+INSERT INTO conseil_mois(id_produit_fk,date_conseil_mois, raison) VALUES 
+('PROD0001','2024-05-03 00:00:00', 'Changement climatique');

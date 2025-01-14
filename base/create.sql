@@ -131,3 +131,18 @@ CREATE TABLE vente(
     date_vente timestamp default CURRENT_TIMESTAMP,
     nombre int
 );
+
+
+-- ** 14 - 01 - 2024
+
+CREATE SEQUENCE seq_conseil_mois;
+CREATE TABLE conseil_mois(
+    id_conseil_mois VARCHAR PRIMARY KEY DEFAULT custom_seq(
+        'CM' :: character varying,
+        'seq_conseil_mois' :: character varying,
+        4
+    ) NOT NULL,
+    id_produit_fk VARCHAR REFERENCES produit(id_produit),
+    date_conseil_mois timestamp default CURRENT_TIMESTAMP,
+    raison VARCHAR(255)
+);

@@ -161,8 +161,8 @@
         function addCategorieSelected(){
             
             categorieSelectedPlace.innerHTML = ""
-            console.log(categorieSelectedValue)
-            console.log(categorieSelectedKey)
+            //console.log(categorieSelectedValue)
+            //console.log(categorieSelectedKey)
             let i = 0
             categorieSelectedValue.forEach((categoryValue, index) => {
                 let classResult = document.createElement("div");
@@ -201,8 +201,8 @@
             function addTypesSelected() {
 
                 typesSelectedPlace.innerHTML = ""
-                console.log(typesSelectedValue)
-                console.log(typesSelectedKey)
+                //console.log(typesSelectedValue)
+                //console.log(typesSelectedKey)
                 let i = 0
                 typesSelectedValue.forEach((categoryValue, index) => {
                     let classResult = document.createElement("div");
@@ -241,8 +241,8 @@
                 function addMaladieSelected() {
 
                     maladieSelectedPlace.innerHTML = ""
-                    console.log(maladieSelectedValue)
-                    console.log(maladieSelectedKey)
+                    // console.log(maladieSelectedValue)
+                    // console.log(maladieSelectedKey)
                     let i = 0
                     maladieSelectedValue.forEach((categoryValue, index) => {
                         let classResult = document.createElement("div");
@@ -281,6 +281,7 @@
             categorieSelectedKey.push(selectedOptionCategorie.value);
             categorieSelectedValue.push(selectedOptionCategorie.text);
             addCategorieSelected();
+            displayVenteProduit(displayVenteProduit)
         })
         var selectTypes = document.querySelector('.select-types');
             selectTypes.addEventListener('change', () => {
@@ -288,6 +289,7 @@
                 typesSelectedKey.push(selectedOptionTypes.value);
                 typesSelectedValue.push(selectedOptionTypes.text);
                 addTypesSelected();
+                displayVenteProduit(displayVenteProduit)
             })
 
 
@@ -296,7 +298,7 @@
             displayMaladie();        
             displayTypes();
             displayCategorie();
-            displayVenteProduit()
+            displayVenteProduit(typesSelectedKey)
         };
         window.dataLayer = window.dataLayer || [];
 

@@ -16,6 +16,7 @@ import mg.itu.pharmacie.Models.Tables.Categorie;
 import mg.itu.pharmacie.Models.Tables.Maladie;
 import mg.itu.pharmacie.Models.Tables.Types;
 import mg.itu.pharmacie.Models.Views.VProduitCTM;
+import mg.itu.pharmacie.Models.Views.VProduitSelect;
 import mg.itu.pharmacie.Models.Views.VVenteProduit;
 import mg.itu.pharmacie.Models.Views.VVenteProduitDetail;
 
@@ -139,6 +140,42 @@ public class APIController {
         return resultat;
     }
 
+    @GetMapping("produit-select")
+    public Map<String, Object> getAllProduitSelect()
+            throws Exception {
+
+        Map<String, Object> resultat = new HashMap<>();
+        int status = 0;
+        String titre = null;
+        String message = null;
+        Connection connection = null;
+        try {
+            connection = MyConnection.connectDefault();
+            connection.setAutoCommit(false);
+            VProduitSelect[] produitSelect = (VProduitSelect[]) DB.getList(new VProduitSelect(), connection);
+            resultat.put("data", produitSelect);
+            status = 200;
+            titre = "Prendre tout les produits reussi";
+            message = "Success , voila les produits ";
+        } catch (Exception e) {
+            status = 500;
+            titre = "Prendre tout les produits echoué";
+            message = e.getMessage();
+            e.printStackTrace();
+            if (connection != null) {
+                connection.rollback();
+            }
+        } finally {
+            resultat.put("status", status);
+            resultat.put("titre", titre);
+            resultat.put("message", message);
+            if (!(connection == null)) {
+                connection.close();
+            }
+        }
+        return resultat;
+    }
+
     @GetMapping("categories")
     public Map<String, Object> getAllcategorie()
             throws Exception {
@@ -186,6 +223,17 @@ public class APIController {
                 ? payload.getOrDefault("type", new String[0])
                 : new String[0];
 
+                for (String cat : categorie) {
+                    System.out.println(cat);
+                }
+                for (String cat : type) {
+                    System.out.println(cat);
+                }
+        String where = "";
+        if(categorie.length > 0 || type.length > 0)
+            where += " where ";
+        
+        // for categorie et type
         Map<String, Object> resultat = new HashMap<>();
         int status = 0;
         String titre = null;

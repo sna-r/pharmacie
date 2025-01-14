@@ -100,3 +100,22 @@ FROM
             date_vente
 
     ) AS v ON v.id_produit_fk = p.id_produit;
+
+-- ** 14 - 01 - 2024
+CREATE OR REPLACE VIEW v_produit_select AS
+SELECT 
+    nom,
+    id_produit
+FROM 
+    produit;
+
+CREATE OR REPLACE VIEW v_liste_conseil AS 
+SELECT
+    p.nom AS nom_produit,
+    t.nom AS nom_types,
+    c.raison,
+    c.date_conseil_mois
+FROM
+    conseil_mois AS c
+JOIN produit AS p ON c.id_produit_fk = p.id_produit
+JOIN types AS t ON t.id_type = p.id_types_fk;

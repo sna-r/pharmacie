@@ -1,4 +1,5 @@
 DELETE FROM vente;
+DELETE FROM conseil_mois;
 DELETE FROM produit_categorie;
 DELETE FROM produit_maladie;
 DELETE FROM produit;
@@ -19,3 +20,4 @@ ALTER SEQUENCE seq_produit_maladie RESTART WITH 1;
 ALTER SEQUENCE seq_maladie_symptome RESTART WITH 1;
 ALTER SEQUENCE seq_symptome RESTART WITH 1;
 ALTER SEQUENCE seq_vente RESTART WITH 1;
+ALTER SEQUENCE seq_conseil_mois RESTART WITH 1;
