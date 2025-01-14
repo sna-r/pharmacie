@@ -65,7 +65,7 @@ FROM
             SUM(nombre) AS nombre
         FROM
             vente
-        WHERE date_vente >= '05-01-2025 00:00:00' and date_vente <= '13-01-2025 00:00:00'
+        --WHERE date_vente >= '05-01-2025 00:00:00' and date_vente <= '13-01-2025 00:00:00'
         GROUP BY
             id_produit_fk) AS v ON v.id_produit_fk = p.id_produit;
 
