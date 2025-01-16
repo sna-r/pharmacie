@@ -146,3 +146,19 @@ CREATE TABLE conseil_mois(
     date_conseil_mois timestamp default CURRENT_TIMESTAMP,
     raison VARCHAR(255)
 );
+
+-- 16 - 01 - 2025
+
+CREATE SEQUENCE seq_client;
+
+CREATE TABLE client (
+    id_client VARCHAR PRIMARY KEY DEFAULT custom_seq(
+        'CL' :: character varying,
+        'seq_client' :: character varying,
+        4
+    ) NOT NULL,
+    nom VARCHAR NOT NULL
+);
+
+ALTER TABLE vente
+ADD COLUMN id_client_fk VARCHAR REFERENCES client(id_client);

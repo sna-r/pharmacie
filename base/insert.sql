@@ -176,3 +176,24 @@ VALUES
 -- conseil du mois
 INSERT INTO conseil_mois(id_produit_fk,date_conseil_mois, raison) VALUES 
 ('PROD0001','2024-05-03 00:00:00', 'Changement climatique');
+
+-- 16 - 01 - 2025
+INSERT INTO client (nom) VALUES ('Rakoto'), ('Rabe'), ('Rasoa');
+
+DO $$
+BEGIN
+    FOR i IN 1..50 LOOP
+        -- Insérer un client
+        INSERT INTO client (nom)
+        VALUES ('Client ' || i);
+
+        -- Obtenir l'id du dernier client inséré
+        INSERT INTO vente (id_produit_fk, id_client_fk, nombre)
+        VALUES (
+            (SELECT id_produit FROM produit ORDER BY RANDOM() LIMIT 1), -- Produit aléatoire
+            (SELECT id_client FROM client ORDER BY id_client DESC LIMIT 1), -- Dernier client inséré
+            FLOOR(RANDOM() * 10 + 1) -- Quantité aléatoire entre 1 et 10
+        );
+    END LOOP;
+END $$;
+

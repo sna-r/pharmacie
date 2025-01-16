@@ -119,3 +119,20 @@ FROM
     conseil_mois AS c
 JOIN produit AS p ON c.id_produit_fk = p.id_produit
 JOIN types AS t ON t.id_type = p.id_types_fk;
+
+-- ** 16 - 01 - 2025
+CREATE OR REPLACE VIEW v_vente_client AS
+SELECT 
+    v.id_vente, 
+    p.nom AS produit, 
+    c.nom AS client, 
+    v.nombre * p.prix_unitaire AS prix_total, 
+    v.nombre,
+    v.date_vente
+FROM 
+    vente v
+JOIN 
+    produit p ON v.id_produit_fk = p.id_produit
+JOIN 
+    client c ON v.id_client_fk = c.id_client;
+

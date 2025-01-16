@@ -73,7 +73,16 @@
           <a class="nav-link pl-3" href="/liste-conseil-anne"><span class="ml-1">Annee</span></a>
         </ul>
       </li>
-      
+      <li class="nav-item dropdown">
+        <a href="#client" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+          <!-- <i class="fe fe-chart fe-16"></i> -->
+          <span class="ml-3 item-text">Client</span>
+        </a>
+        <ul class="collapse list-unstyled pl-4 w-100" id="client">
+          <a class="nav-link pl-3" href="/add-conseil-mois"><span class="ml-1">Ajoute</span></a>
+          <a class="nav-link pl-3" href="/liste-vente-client"><span class="ml-1">Liste vente</span></a>
+        </ul>
+      </li>
     </ul>
 
   </nav>

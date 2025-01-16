@@ -13,6 +13,7 @@ import mg.itu.pharmacie.Models.Generalisation.GeneralisationDb.DB;
 import mg.itu.pharmacie.Models.Tables.ConseilMois;
 import mg.itu.pharmacie.Models.Views.VListeConseil;
 import mg.itu.pharmacie.Models.Views.VProduitSelect;
+import mg.itu.pharmacie.Models.Views.VVenteClient;
 import mg.itu.pharmacie.Models.utils.DateHeure;
 
 @Controller
@@ -63,11 +64,38 @@ public class RooterController {
 
         int mois = now.getTypeMois();
         int anne = now.getYear();
-        String where =  "WHERE EXTRACT(YEAR FROM date_conseil_mois) = " + anne;
+        String where = "WHERE EXTRACT(YEAR FROM date_conseil_mois) = " + anne;
         VListeConseil[] listeConseil = (VListeConseil[]) DB.getList(new VListeConseil(), where, connection);
         model.addAttribute("listeConseil", listeConseil);
         return "conseil-mois/anne";
     }
+    
+    @GetMapping("/liste-vente-client")
+    public String liste_vente_client(@RequestParam(defaultValue = "2025") String anne, 
+            @RequestParam(defaultValue = "tout") String mois, 
+            @RequestParam(defaultValue = "tout") String jour, 
+            Model model) throws Exception {
+
+        // Connexion à la base de données
+        Connection connection = MyConnection.connectDefault();
+
+        String where = "WHERE EXTRACT(YEAR FROM date_vente) = " + anne;
+
+        if (!mois.equals("tout")) {
+            where += " AND EXTRACT(MONTH FROM date_vente) = " + mois;
+        }
+
+        if (!jour.equals("tout")) {
+            where += " AND EXTRACT(DAY FROM date_vente) = " + jour;
+        }
+
+        VVenteClient[] listeVenteClient = (VVenteClient[]) DB.getList(new VVenteClient(), where, connection);
+
+        model.addAttribute("listeVenteClient", listeVenteClient);
+
+        return "client/liste-vente";
+    }
+
 
     @PostMapping("/add-conseil-mois-traitement")
     public String ajouter_conseil_mois_traimement(@RequestParam String id_produit, @RequestParam String date, 
