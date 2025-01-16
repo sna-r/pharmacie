@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import mg.itu.pharmacie.Models.Databases.MyConnection;
 import mg.itu.pharmacie.Models.Generalisation.GeneralisationDb.DB;
+import mg.itu.pharmacie.Models.Tables.ClientTable;
 import mg.itu.pharmacie.Models.Tables.ConseilMois;
 import mg.itu.pharmacie.Models.Views.VListeConseil;
 import mg.itu.pharmacie.Models.Views.VProduitSelect;
@@ -30,7 +31,12 @@ public class RooterController {
 
     @GetMapping("/add-conseil-mois")
     public String ajoute_conseil() {
-        return "conseil-mois/ajouter"; 
+        return "conseil-mois/ajouter";
+    }
+    
+    @GetMapping("/ajouter-client")
+    public String ajoute_client() {
+        return "client/ajouter";
     }
 
     @GetMapping("/liste-conseil-mois")
@@ -104,12 +110,23 @@ public class RooterController {
         conseilMois.setDate(new DateHeure(date + "-01", "00:00:00"));
         conseilMois.setRaison(raison);
         conseilMois.setId_produit(id_produit);
-        Connection connection =  MyConnection.connectDefault();
+        Connection connection = MyConnection.connectDefault();
 
-        DB.insert(conseilMois,connection);
+        DB.insert(conseilMois, connection);
         System.out.println(id_produit + " " + date + " " + raison);
         return "conseil-mois/ajouter";
     }
     
+    
+    
+    @PostMapping("/ajouter-client-traitement")
+    public String ajouter_client_traitement(@RequestParam String nom,Model model) throws Exception {
+        
+        Connection connection = MyConnection.connectDefault();
+        ClientTable client = new ClientTable();
+        client.setNom(nom);
+        DB.insert(client, connection);
+        return "client/ajouter";
+    }
     
 }

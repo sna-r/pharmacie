@@ -136,3 +136,6 @@ JOIN
 JOIN 
     client c ON v.id_client_fk = c.id_client;
 
+CREATE OR REPLACE VIEW v_client AS 
+SELECT * from client;
+

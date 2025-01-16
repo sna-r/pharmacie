@@ -79,7 +79,7 @@
           <span class="ml-3 item-text">Client</span>
         </a>
         <ul class="collapse list-unstyled pl-4 w-100" id="client">
-          <a class="nav-link pl-3" href="/add-conseil-mois"><span class="ml-1">Ajoute</span></a>
+          <a class="nav-link pl-3" href="/ajouter-client"><span class="ml-1">Ajoute</span></a>
           <a class="nav-link pl-3" href="/liste-vente-client"><span class="ml-1">Liste vente</span></a>
         </ul>
       </li>
