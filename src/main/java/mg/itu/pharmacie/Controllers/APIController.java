@@ -1,14 +1,19 @@
 package mg.itu.pharmacie.Controllers;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import mg.itu.pharmacie.Models.Databases.MyConnection;
 import mg.itu.pharmacie.Models.Generalisation.GeneralisationDb.DB;
@@ -22,18 +27,26 @@ import mg.itu.pharmacie.Models.Views.VVenteProduitDetail;
 
 @RestController
 public class APIController {
-    @GetMapping("produitsCTM")
-    public Map<String, Object> getAllProduitCTM(@RequestBody(required = false) Map<String, String[]> payload)
-            throws Exception {
-        String[] categorie = payload != null && payload.containsKey("categorie")
-                ? payload.getOrDefault("categorie", new String[0])
-                : new String[0];
-        String[] type = payload != null && payload.containsKey("type")
-                ? payload.getOrDefault("type", new String[0])
-                : new String[0];
-        String[] maladie = payload != null && payload.containsKey("maladie")
-                ? payload.getOrDefault("maladie", new String[0])
-                : new String[0];
+    @PostMapping("produitsCTM")
+    public Map<String, Object> getAllProduitCTM(
+        @RequestParam(value = "categorie", required = false) String categorieJson,
+        @RequestParam(value = "types", required = false) String typesJson,
+        @RequestParam(value = "maladie", required = false) String maladieJson) throws Exception {
+
+        categorieJson = (categorieJson == null) ? "[]" : categorieJson;
+        typesJson = (typesJson == null) ? "[]" : typesJson;
+        maladieJson = (maladieJson == null) ? "[]" : maladieJson;
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String[] categorie = objectMapper.readValue(categorieJson, String[].class);
+        String[] types = objectMapper.readValue(typesJson, String[].class);
+        String[] maladie = objectMapper.readValue(maladieJson, String[].class);
+
+        
+        String where = "";
+        if (categorie.length == 0 && maladie.length == 0 && types.length == 0) {
+            where = "";
+        }
 
         Map<String, Object> resultat = new HashMap<>();
         int status = 0;
@@ -43,7 +56,7 @@ public class APIController {
         try {
             connection = MyConnection.connectDefault();
             connection.setAutoCommit(false);
-            VProduitCTM[] produits = (VProduitCTM[]) DB.getList(new VProduitCTM(), connection);
+            VProduitCTM[] produits = (VProduitCTM[]) DB.getList(new VProduitCTM(), where, connection);
             resultat.put("data", produits);
             status = 200;
             titre = "Prendre tout les produits reussi";

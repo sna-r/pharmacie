@@ -55,10 +55,10 @@
                                             </select>
                                         </div>
                                         <!-- form-group -->
-                                        <div class="col-4">
+                                        <div class="col-4 maladie-selected">
                                             
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-4 types-selected">
                                             
                                         </div>
                                         <div class="col-4 categorie-selected">
@@ -136,6 +136,14 @@
         var categorieSelectedValue = []
         var categorieSelectedKey = []
 
+        // types
+        var typesSelectedValue = []
+        var typesSelectedKey = []
+
+        // maladie
+        var maladieSelectedValue = []
+        var maladieSelectedKey = []
+
 
     </script>
     <script src="${pageContext.request.contextPath}/assets/js/MyJS/resultatTable.js"></script>
@@ -153,8 +161,7 @@
         function addCategorieSelected() {
 
             categorieSelectedPlace.innerHTML = ""
-            console.log(categorieSelectedValue)
-            console.log(categorieSelectedKey)
+            
             let i = 0
             categorieSelectedValue.forEach((categoryValue, index) => {
                 let classResult = document.createElement("div");
@@ -178,6 +185,7 @@
                     categorieSelectedKey.splice(index, 1)
                     categorieSelectedValue.splice(index, 1)
                     addCategorieSelected()
+                    displayProductCTM();
                 })
 
                 classResultDetails.appendChild(resultValue);
@@ -187,14 +195,12 @@
             })
         }
 
-        // maladie
+        // types
         var typesSelectedPlace = document.querySelector('.types-selected');
         addTypesSelected();
         function addTypesSelected() {
 
             typesSelectedPlace.innerHTML = ""
-            console.log(typesSelectedValue)
-            console.log(typesSelectedKey)
             let i = 0
             typesSelectedValue.forEach((categoryValue, index) => {
                 let classResult = document.createElement("div");
@@ -218,6 +224,7 @@
                     typesSelectedKey.splice(index, 1)
                     typesSelectedValue.splice(index, 1)
                     addTypesSelected()
+                    displayProductCTM();
                 })
 
                 classResultDetails.appendChild(resultValue);
@@ -225,6 +232,7 @@
                 classResult.append(classResultDetails)
                 typesSelectedPlace.appendChild(classResult);
             })
+            
         }
 
         // maladie
@@ -233,8 +241,7 @@
         function addMaladieSelected() {
 
             maladieSelectedPlace.innerHTML = ""
-            console.log(maladieSelectedValue)
-            console.log(maladieSelectedKey)
+           
             let i = 0
             maladieSelectedValue.forEach((categoryValue, index) => {
                 let classResult = document.createElement("div");
@@ -258,6 +265,7 @@
                     maladieSelectedKey.splice(index, 1)
                     maladieSelectedValue.splice(index, 1)
                     addMaladieSelected()
+                    displayProductCTM();
                 })
 
                 classResultDetails.appendChild(resultValue);
@@ -273,7 +281,28 @@
             categorieSelectedKey.push(selectedOptionCategorie.value);
             categorieSelectedValue.push(selectedOptionCategorie.text);
             addCategorieSelected();
+            displayProductCTM();
+            
         })
+
+        var selectTypes = document.querySelector('.select-types');
+            selectTypes.addEventListener('change', () => {
+                let selectedOptionTypes = selectTypes.options[selectTypes.selectedIndex]
+                typesSelectedKey.push(selectedOptionTypes.value);
+                typesSelectedValue.push(selectedOptionTypes.text);
+                addTypesSelected();
+                displayProductCTM();
+            })
+
+        var selectMaladie = document.querySelector('.select-maladie');
+            selectMaladie.addEventListener('change', () => {
+                let selectedOptionMaladie = selectMaladie.options[selectMaladie.selectedIndex]
+                maladieSelectedKey.push(selectedOptionMaladie.value);
+                maladieSelectedValue.push(selectedOptionMaladie.text);
+                addMaladieSelected();
+                displayProductCTM();
+                
+            })
 
 
         window.onload = function () {

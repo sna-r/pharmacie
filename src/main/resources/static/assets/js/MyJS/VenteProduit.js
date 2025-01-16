@@ -11,6 +11,7 @@ var displayVenteProduit = (types) => {
     "nombre",
     "prixTotale"
   ];
+  let methode = "GET"
   let form = new FormData();
   form.append("categorie", categorieSelectedKey);
   form.append("types", types);
@@ -24,7 +25,8 @@ var displayVenteProduit = (types) => {
     titleTable,
     keyResponse,
     form,
-    classTable
+    classTable,
+    methode
   );
 }
 
