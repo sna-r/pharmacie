@@ -43,7 +43,7 @@
                                             <div class="form-row">
                                                
                                                 <div class="form-group col-8">
-                                                    <input type="year" id="example-Date" name="date"
+                                                    <input type="number" id="example-Date" name="date"
                                                         class="form-control">
                                                 </div>
 
