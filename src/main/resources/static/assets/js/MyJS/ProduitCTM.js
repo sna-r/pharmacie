@@ -11,8 +11,15 @@ function displayProductCTM() {
     "nom_categorie",
     "nom_maladie",
   ];
-  let form = new FormData();
-  form.append("categorie", ["Rakoto", "Rabe", "Rasoa"]);
+  let methode = "POST"
+  console.log(typesSelectedKey);
+  console.log(categorieSelectedKey);
+  console.log(maladieSelectedKey);
+let form = new FormData();
+form.append("categorie", JSON.stringify(categorieSelectedKey));
+form.append("types", JSON.stringify(typesSelectedKey));
+form.append("maladie", JSON.stringify(maladieSelectedKey));
+
   let classTable = "table table-hover"
   displayResultat(
     resultClass,
@@ -21,7 +28,8 @@ function displayProductCTM() {
     titleTable,
     keyResponse,
     form,
-    classTable
+    classTable,
+    methode
   );
 }
 

@@ -40,24 +40,20 @@ var displayResultat = function (
   titleTable,
   keyResponse,
   form,
-  classTable
+  classTable,
+  methode
 ) {
   let xhr = new XMLHttpRequest();
-  
-  let imageLoad = new Image();
-  imageLoad.onload = function () {
-    imageLoad.src = imageLoadUrl;
-  };
-  imageLoad.src = imageLoadUrl;
+
   let result = document.querySelector(resultClass);
   result.innerHTML = "";
   result.setAttribute("style", "display:flex; justify-content:center;");
-  result.appendChild(imageLoad);
+  result.innerHTML = "<center>Chargement ...</center>";
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 1) {
       result.innerHTML = "";
       result.setAttribute("style", "display:flex; justify-content:center;");
-      result.appendChild(imageLoad);
+      result.innerHTML = "<center>Chargement ...</center>";
     }
     if (xhr.readyState === 4) {
       if (xhr.status == 200) {
@@ -75,7 +71,7 @@ var displayResultat = function (
         } else {
           result.innerHTML = "";
           result.setAttribute("style", "display:flex; justify-content:center;");
-          result.appendChild(imageLoad);
+          result.innerHTML = "<center>Chargement ...</center>";
         }
       } else {
         result.innerHTML = "";
@@ -89,11 +85,11 @@ var displayResultat = function (
     } else {
       result.innerHTML = "";
       result.setAttribute("style", "display:flex; justify-content:center;");
-      result.appendChild(imageLoad);
+      result.innerHTML = "<center>Chargement ...</center>";
     }
   };
   //XMLHttpRequest.open(method, url, async)
-  xhr.open("GET", url, true);
+  xhr.open(methode, url, true);
 
   //XMLHttpRequest.send(body)
   xhr.send(form);
