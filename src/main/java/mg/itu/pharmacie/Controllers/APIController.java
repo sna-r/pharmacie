@@ -43,9 +43,29 @@ public class APIController {
         String[] maladie = objectMapper.readValue(maladieJson, String[].class);
 
         
+        
         String where = "";
-        if (categorie.length == 0 && maladie.length == 0 && types.length == 0) {
-            where = "";
+
+        if (categorie.length > 0 || maladie.length > 0 || types.length > 0) {
+            where = "WHERE ";
+            List<String> conditions = new ArrayList<>();
+
+            if (categorie.length > 0) {
+                String categorieCondition = "id_categorie_fk IN ('" + String.join("', '", categorie) + "')";
+                conditions.add(categorieCondition);
+            }
+
+            if (types.length > 0) {
+                String typesCondition = "id_types_fk IN ('" + String.join("', '", types) + "')";
+                conditions.add(typesCondition);
+            }
+
+            if (maladie.length > 0) {
+                String maladieCondition = "id_maladie_fk IN ('" + String.join("', '", maladie) + "')";
+                conditions.add(maladieCondition);
+            }
+
+            where += String.join(" AND ", conditions);
         }
 
         Map<String, Object> resultat = new HashMap<>();
