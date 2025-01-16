@@ -39,7 +39,7 @@
                                                 <div class="form-row">
                                                     <div class="form-group col-12">
                                                         <label for="client-name">Nom</label>
-                                                        <input type="text" id="client-name" name="name"
+                                                        <input type="text" id="client-name" name="nom"
                                                             class="form-control" required />
                                                     </div>
                                                    
