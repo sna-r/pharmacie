@@ -70,6 +70,7 @@
         <ul class="collapse list-unstyled pl-4 w-100" id="conseil">
           <a class="nav-link pl-3" href="/add-conseil-mois"><span class="ml-1">Ajoute</span></a>
           <a class="nav-link pl-3" href="/liste-conseil-mois"><span class="ml-1">Liste</span></a>
+          <a class="nav-link pl-3" href="/liste-conseil-anne"><span class="ml-1">Annee</span></a>
         </ul>
       </li>
       

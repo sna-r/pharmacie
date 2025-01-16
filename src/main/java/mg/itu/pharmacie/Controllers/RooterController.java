@@ -44,10 +44,29 @@ public class RooterController {
 
         int mois = now.getTypeMois();
         int anne = now.getYear();
-        String where = " WHERE EXTRACT(MONTH FROM date_conseil_mois) = "+ mois +" AND EXTRACT(YEAR FROM date_conseil_mois) = " + anne;
-        VListeConseil[] listeConseil = (VListeConseil[]) DB.getList(new VListeConseil(), where , connection);
+        String where = " WHERE EXTRACT(MONTH FROM date_conseil_mois) = " + mois
+                + " AND EXTRACT(YEAR FROM date_conseil_mois) = " + anne;
+        VListeConseil[] listeConseil = (VListeConseil[]) DB.getList(new VListeConseil(), where, connection);
         model.addAttribute("listeConseil", listeConseil);
         return "conseil-mois/lister";
+    }
+    
+    @GetMapping("/liste-conseil-anne")
+    public String liste_conseil_anne(@RequestParam(defaultValue = "2025") String date, Model model) throws Exception {
+        Connection connection = MyConnection.connectDefault();
+        DateHeure now = null;
+        if (date.length() > 0) {
+            now = new DateHeure(date + "-01-01", "00:00:00");
+        } else {
+            now = DateHeure.getTodayDateHeure();
+        }
+
+        int mois = now.getTypeMois();
+        int anne = now.getYear();
+        String where =  "WHERE EXTRACT(YEAR FROM date_conseil_mois) = " + anne;
+        VListeConseil[] listeConseil = (VListeConseil[]) DB.getList(new VListeConseil(), where, connection);
+        model.addAttribute("listeConseil", listeConseil);
+        return "conseil-mois/anne";
     }
 
     @PostMapping("/add-conseil-mois-traitement")
