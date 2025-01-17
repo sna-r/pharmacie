@@ -12,6 +12,8 @@ import mg.itu.pharmacie.Models.Databases.MyConnection;
 import mg.itu.pharmacie.Models.Generalisation.GeneralisationDb.DB;
 import mg.itu.pharmacie.Models.Tables.ClientTable;
 import mg.itu.pharmacie.Models.Tables.ConseilMois;
+import mg.itu.pharmacie.Models.Tables.Vente;
+import mg.itu.pharmacie.Models.Views.VClient;
 import mg.itu.pharmacie.Models.Views.VListeConseil;
 import mg.itu.pharmacie.Models.Views.VProduitSelect;
 import mg.itu.pharmacie.Models.Views.VVenteClient;
@@ -120,13 +122,74 @@ public class RooterController {
     
     
     @PostMapping("/ajouter-client-traitement")
-    public String ajouter_client_traitement(@RequestParam String nom,Model model) throws Exception {
-        
+    public String ajouter_client_traitement(@RequestParam String nom, Model model) throws Exception {
+
         Connection connection = MyConnection.connectDefault();
         ClientTable client = new ClientTable();
         client.setNom(nom);
         DB.insert(client, connection);
         return "client/ajouter";
     }
+
+    @GetMapping("/vente-form")
+    public String afficherFormulaireVente(Model model) throws Exception {
+        // Connexion à la base de données
+        Connection connection = MyConnection.connectDefault();
+
+        // Récupérer la liste des produits
+        String whereProduit = ""; // Filtre si nécessaire
+        VProduitSelect[] produits = (VProduitSelect[]) DB.getList(new VProduitSelect(), whereProduit, connection);
+
+        // Récupérer la liste des clients
+        String whereClient = ""; // Filtre si nécessaire
+        VClient[] clients = (VClient[]) DB.getList(new VClient(), whereClient, connection);
+
+        // Ajouter les listes au modèle
+        model.addAttribute("produits", produits);
+        model.addAttribute("clients", clients);
+
+        return "vente/ajouter"; // Nom de la vue à afficher
+    }
     
+     @PostMapping("/ajouter-vente-traitement")
+    public String ajouterVente(@RequestParam("id_produit") String idProduit,
+                                @RequestParam int nombre,
+                                @RequestParam("id_client") String idClient,
+                                @RequestParam("date_vente") String dateVente, // Optional, will default to current date if not provided
+                                Model model) throws Exception {
+
+        Connection connection = MyConnection.connectDefault();
+        
+        // Créer une nouvelle instance de la vente
+        Vente vente = new Vente();
+        vente.setIdProduit(idProduit);
+        vente.setNombre(nombre);
+        vente.setIdClient(idClient);
+
+        // Si la date n'est pas fournie, on utilise la date actuelle
+        if (dateVente == null || dateVente.isEmpty()) {
+            vente.setDateVente(DateHeure.getTodayDateHeure());
+        } else {
+            dateVente = dateVente.replace("T", " ");
+            vente.setDateVente(new DateHeure(dateVente));
+        }
+
+        // Insérer la vente dans la base de données
+        DB.insert(vente, connection);
+
+        // Ajouter un message de confirmation dans le modèle
+        model.addAttribute("message", "Vente ajoutée avec succès.");
+
+        String whereProduit = ""; // Filtre si nécessaire
+        VProduitSelect[] produits = (VProduitSelect[]) DB.getList(new VProduitSelect(), whereProduit, connection);
+
+        // Récupérer la liste des clients
+        String whereClient = ""; // Filtre si nécessaire
+        VClient[] clients = (VClient[]) DB.getList(new VClient(), whereClient, connection);
+        // Rediriger vers la page d'ajout de vente
+        model.addAttribute("produits", produits);
+        model.addAttribute("clients", clients);
+        return "vente/ajouter"; // Remplacer par la page de confirmation ou de retour souhaitée
+    }
+
 }

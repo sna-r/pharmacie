@@ -57,7 +57,7 @@
           <span class="ml-3 item-text">Vente</span>
         </a>
         <ul class="collapse list-unstyled pl-4 w-100" id="contact">
-          <a class="nav-link pl-3" href="#"><span class="ml-1">Ajoute</span></a>
+          <a class="nav-link pl-3" href="/vente-form"><span class="ml-1">Ajoute</span></a>
           <a class="nav-link pl-3" href="#"><span class="ml-1">Analyse</span></a>
           <a class="nav-link pl-3" href="/vente-product"><span class="ml-1">Liste</span></a>
         </ul>
