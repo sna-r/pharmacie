@@ -160,7 +160,7 @@ public class RooterController {
                                 @RequestParam int nombre,
                                 @RequestParam("id_client") String idClient,
                                 @RequestParam("date_vente") String dateVente, // Optional, will default to current date if not provided
-            Model model) throws Exception {
+            Model model, HttpSession session) throws Exception {
 
         Connection connection = MyConnection.connectDefault();
 
@@ -169,7 +169,7 @@ public class RooterController {
         vente.setIdProduit(idProduit);
         vente.setNombre(nombre);
         vente.setIdClient(idClient);
-
+        vente.setIdVendeur(((VUsers)session.getAttribute("users")).getIdUser());
         // Si la date n'est pas fournie, on utilise la date actuelle
         if (dateVente == null || dateVente.isEmpty()) {
             vente.setDateVente(DateHeure.getTodayDateHeure());

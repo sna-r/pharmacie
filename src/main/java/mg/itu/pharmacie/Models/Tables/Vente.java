@@ -20,9 +20,17 @@ public class Vente {
     @AttributDb(name = "id_client_fk")
     String idClient;
 
+    @AttributDb(name = "id_user_fk")
+    String idVendeur;
+
     // Getters et Setters
     
-
+    public void setIdVendeur(String idVendeur) {
+        this.idVendeur = idVendeur;
+    }
+    public String getIdVendeur() {
+        return idVendeur;
+    }
 
     public String getIdProduit() {
         return idProduit;
