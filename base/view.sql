@@ -139,3 +139,8 @@ JOIN
 CREATE OR REPLACE VIEW v_client AS 
 SELECT * from client;
 
+-- ** 21 - 01 - 2025
+CREATE OR REPLACE VIEW v_users AS
+ SELECT 
+ * 
+ FROM  users;

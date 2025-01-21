@@ -17,9 +17,9 @@
         </span>
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="equipe-log-out">Deconnection</a>
+        <a class="dropdown-item" href="/deconnection">Deconnection</a>
       </div>
-    </li>
+    </li> 
   </ul>
 </nav>
 <aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
@@ -81,6 +81,16 @@
         <ul class="collapse list-unstyled pl-4 w-100" id="client">
           <a class="nav-link pl-3" href="/ajouter-client"><span class="ml-1">Ajoute</span></a>
           <a class="nav-link pl-3" href="/liste-vente-client"><span class="ml-1">Liste vente</span></a>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a href="#vendeur" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+          <!-- <i class="fe fe-chart fe-16"></i> -->
+          <span class="ml-3 item-text">Vendeur</span>
+        </a> 
+        <ul class="collapse list-unstyled pl-4 w-100" id="vendeur">
+          <a class="nav-link pl-3" href="/ajouter-vendeur"><span class="ml-1">Ajoute</span></a>
+          <a class="nav-link pl-3" href="/liste-vente-vendeur"><span class="ml-1">Liste</span></a>
         </ul>
       </li>
     </ul>

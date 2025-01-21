@@ -197,3 +197,28 @@ BEGIN
     END LOOP;
 END $$;
 
+-- 21 - 01 - 2025
+INSERT INTO type_users(nom) VALUES ('Vendeur') , ('admin');
+
+
+INSERT INTO users (nom, login, mdp, id_type_users) VALUES 
+('Andrianina Rakoto', 'arakoto', 'rakoto123', 'TPU0001'),
+('Finaritra Rabe', 'frabe', 'finaritra123', 'TPU0001'),
+('Tsiry Randriamampionona', 'trandria', 'tsiry456', 'TPU0001'),
+('Voahangy Rasoamanana', 'vrasoa', 'voahangy789', 'TPU0001'),
+('Tiana Razafindrabe', 'trazafy', 'tiana321', 'TPU0001');
+
+WITH random_users AS (
+    SELECT id_user, ROW_NUMBER() OVER () AS rn
+    FROM users
+    ORDER BY RANDOM()
+),
+random_ventes AS (
+    SELECT id_vente, ROW_NUMBER() OVER () AS rn
+    FROM vente
+)
+UPDATE vente
+SET id_user_fk = ru.id_user
+FROM random_users ru
+JOIN random_ventes rv ON ru.rn = ((rv.rn - 1) % (SELECT COUNT(*) FROM users)) + 1
+WHERE vente.id_vente = rv.id_vente;

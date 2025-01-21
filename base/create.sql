@@ -162,3 +162,33 @@ CREATE TABLE client (
 
 ALTER TABLE vente
 ADD COLUMN id_client_fk VARCHAR REFERENCES client(id_client);
+
+
+-- 21 - 01 - 2025
+CREATE SEQUENCE seq_types_users;
+CREATE TABLE type_users (
+    id_type_users VARCHAR PRIMARY KEY DEFAULT custom_seq(
+        'TPU' :: character varying,
+        'seq_types_users' :: character varying,
+        4
+    ) NOT NULL,
+    nom VARCHAR NOT NULL
+);
+
+CREATE SEQUENCE seq_users;
+
+CREATE TABLE users (
+    id_user VARCHAR PRIMARY KEY DEFAULT custom_seq(
+        'USR' :: character varying,
+        'seq_users' :: character varying,
+        4
+    ) NOT NULL,
+    nom VARCHAR NOT NULL,
+    login VARCHAR NOT NULL UNIQUE,
+    mdp VARCHAR NOT NULL,
+    id_type_users VARCHAR NOT NULL,
+    CONSTRAINT fk_type_users FOREIGN KEY (id_type_users) REFERENCES type_users(id_type_users)
+);
+
+ALTER TABLE vente
+ADD COLUMN id_user_fk VARCHAR REFERENCES users(id_user);

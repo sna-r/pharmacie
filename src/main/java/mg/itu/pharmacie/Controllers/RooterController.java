@@ -1,5 +1,6 @@
 package mg.itu.pharmacie.Controllers;
 
+import java.io.IOException;
 import java.sql.Connection;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import mg.itu.pharmacie.Models.Databases.MyConnection;
 import mg.itu.pharmacie.Models.Generalisation.GeneralisationDb.DB;
 import mg.itu.pharmacie.Models.Tables.ClientTable;
@@ -16,6 +19,7 @@ import mg.itu.pharmacie.Models.Tables.Vente;
 import mg.itu.pharmacie.Models.Views.VClient;
 import mg.itu.pharmacie.Models.Views.VListeConseil;
 import mg.itu.pharmacie.Models.Views.VProduitSelect;
+import mg.itu.pharmacie.Models.Views.VUsers;
 import mg.itu.pharmacie.Models.Views.VVenteClient;
 import mg.itu.pharmacie.Models.utils.DateHeure;
 
@@ -156,10 +160,10 @@ public class RooterController {
                                 @RequestParam int nombre,
                                 @RequestParam("id_client") String idClient,
                                 @RequestParam("date_vente") String dateVente, // Optional, will default to current date if not provided
-                                Model model) throws Exception {
+            Model model) throws Exception {
 
         Connection connection = MyConnection.connectDefault();
-        
+
         // Créer une nouvelle instance de la vente
         Vente vente = new Vente();
         vente.setIdProduit(idProduit);
@@ -192,4 +196,40 @@ public class RooterController {
         return "vente/ajouter"; // Remplacer par la page de confirmation ou de retour souhaitée
     }
 
+    // 21 - 01 - 2025
+
+    @GetMapping("/ajouter-vendeur")
+    public String ajoute_vendeur() {
+        return "vendeur/ajouter";
+    }
+
+    @GetMapping("/deconnection")
+    public void deconnection(HttpSession session,
+            Model model, HttpServletResponse res) throws Exception {
+        session.removeAttribute("users");
+        res.sendRedirect("/login");
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @PostMapping("/login-traitement")
+    public void loginTraitement(@RequestParam("login") String login,
+            @RequestParam("mdp") String mdp,
+            Model model, HttpServletResponse res, HttpSession session) throws Exception {
+
+        Connection connection = MyConnection.connectDefault();
+        
+        
+        String whereClient = "where login = '" + login + "' and mdp = '" + mdp + "' ";
+        VUsers[] users = (VUsers[]) DB.getList(new VUsers(), whereClient, connection); 
+        if (users.length == 0) {
+            res.sendRedirect("/login");
+        }else{
+            session.setAttribute("users", users[0]);
+            res.sendRedirect("/");
+        }
+    }
 }

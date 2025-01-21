@@ -1,3 +1,4 @@
+DELETE FROM type_users;
 DELETE FROM vente;
 DELETE FROM client;
 DELETE FROM conseil_mois;
@@ -23,3 +24,4 @@ ALTER SEQUENCE seq_symptome RESTART WITH 1;
 ALTER SEQUENCE seq_vente RESTART WITH 1;
 ALTER SEQUENCE seq_conseil_mois RESTART WITH 1;
 ALTER SEQUENCE seq_client RESTART WITH 1;
+ALTER SEQUENCE seq_types_users RESTART WITH 1;
