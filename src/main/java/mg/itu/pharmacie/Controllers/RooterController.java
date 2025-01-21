@@ -92,7 +92,7 @@ public class RooterController {
 
         // Connexion à la base de données
         Connection connection = MyConnection.connectDefault();
-
+        
         String where = "WHERE EXTRACT(YEAR FROM date_vente) = " + anne;
 
         if (!mois.equals("tout")) {

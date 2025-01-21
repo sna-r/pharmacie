@@ -255,3 +255,34 @@ WITH produit_list AS (
 INSERT INTO prix_produit_historique (id_produit_fk, prix,date_modification)
 SELECT id_produit, prix_unitaire, '2020-01-01 00:00:00'
 FROM produit_list;
+-- test vente
+DO $$
+DECLARE
+    client_id VARCHAR;
+    product_id VARCHAR;
+    vente_date DATE;
+    current_month DATE := '2022-01-01'; -- Start date (January 2022)
+    end_month DATE := '2024-12-01'; -- End date (December 2024)
+BEGIN
+    -- Loop through each month from January 2022 to December 2024
+    WHILE current_month <= end_month LOOP
+        -- For each month, insert 20 records
+        FOR i IN 1..20 LOOP
+            -- Generate a random client_id between CL0001 and CL0053
+            client_id := 'CL' || LPAD(FLOOR(RANDOM() * 53 + 1)::TEXT, 4, '0');
+            
+            -- Generate a random product_id between PROD0001 and PROD0020
+            product_id := 'PROD' || LPAD(FLOOR(RANDOM() * 20 + 1)::TEXT, 4, '0');
+            
+            -- Generate a random date within the current month
+            vente_date := current_month + (FLOOR(RANDOM() * (EXTRACT(DAY FROM (current_month + INTERVAL '1 month') - current_month))::INTEGER)) * INTERVAL '1 day';
+            
+            -- Insert a record into the vente table
+            INSERT INTO vente(id_produit_fk, id_client_fk, date_vente, nombre)
+            VALUES (product_id, client_id, vente_date, FLOOR(RANDOM() * 10 + 1)); -- Random quantity between 1 and 10
+        END LOOP;
+        
+        -- Move to the next month
+        current_month := current_month + INTERVAL '1 month';
+    END LOOP;
+END $$;
