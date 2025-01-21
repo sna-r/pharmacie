@@ -144,3 +144,5 @@ CREATE OR REPLACE VIEW v_users AS
  SELECT 
  * 
  FROM  users;
+
+

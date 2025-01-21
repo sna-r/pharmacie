@@ -222,3 +222,10 @@ SET id_user_fk = ru.id_user
 FROM random_users ru
 JOIN random_ventes rv ON ru.rn = ((rv.rn - 1) % (SELECT COUNT(*) FROM users)) + 1
 WHERE vente.id_vente = rv.id_vente;
+
+
+INSERT INTO commission (valeur) VALUES (5.50);
+INSERT INTO commission (valeur) VALUES (10.75);
+INSERT INTO commission (valeur) VALUES (20.25);
+INSERT INTO commission (valeur) VALUES (3.00);
+INSERT INTO commission (valeur) VALUES (2.30);

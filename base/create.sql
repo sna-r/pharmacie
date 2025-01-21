@@ -192,3 +192,18 @@ CREATE TABLE users (
 
 ALTER TABLE vente
 ADD COLUMN id_user_fk VARCHAR REFERENCES users(id_user);
+
+-- Création de la séquence pour id_commission
+CREATE SEQUENCE seq_commission;
+
+-- Création de la table commission
+CREATE TABLE commission (
+    id_commission VARCHAR PRIMARY KEY DEFAULT custom_seq(
+        'COM' :: character varying,
+        'seq_commission' :: character varying,
+        5
+    ) NOT NULL,
+    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    valeur DOUBLE PRECISION NOT NULL
+);
+
