@@ -229,3 +229,21 @@ INSERT INTO commission (valeur) VALUES (10.75);
 INSERT INTO commission (valeur) VALUES (20.25);
 INSERT INTO commission (valeur) VALUES (3.00);
 INSERT INTO commission (valeur) VALUES (2.30);
+
+-- 23 - 01 - 2025
+INSERT INTO genre(nom) VALUES ('Homme') , ('Femme');
+
+WITH random_genres AS (
+    SELECT id_genre, ROW_NUMBER() OVER () AS rn
+    FROM genre
+    ORDER BY RANDOM()
+),
+random_users AS (
+    SELECT id_user, ROW_NUMBER() OVER () AS rn
+    FROM users
+)
+UPDATE users
+SET id_genre_fk = rg.id_genre
+FROM random_genres rg
+JOIN random_users ru ON rg.rn = ru.rn
+WHERE users.id_user = ru.id_user;

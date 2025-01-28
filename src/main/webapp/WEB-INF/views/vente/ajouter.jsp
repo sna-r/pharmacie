@@ -75,7 +75,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-6">
                                                     <label for="date-vente">Date de Vente</label>
-                                                    <input type="datetime-local" step="2" name="date_vente" id="date-vente" required="false" class="form-control">
+                                                    <input type="datetime-local" step="2" name="date_vente" id="date-vente" class="form-control">
                                                 </div>
 
                                                 <div class="form-group col-6">

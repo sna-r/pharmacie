@@ -145,4 +145,32 @@ CREATE OR REPLACE VIEW v_users AS
  * 
  FROM  users;
 
+ -- ** 23 - 01 - 2025
+ CREATE OR REPLACE VIEW v_commission_par_vendeur AS
+    SELECT
+        u.id_user AS id_vendeur,
+        u.nom AS nom_vendeur,
+        v.date_vente,
+        g.id_genre AS id_genre_user,
+        v.commission_valeur * p.prix_unitaire AS montant_commission
+    FROM
+        v_vente_commission v
+    JOIN
+        users u ON v.id_user_fk = u.id_user
+    JOIN
+        genre g ON u.id_genre_fk = g.id_genre
+    JOIN 
+        produit p ON v.id_produit_fk = p.id_produit;
 
+-- detail
+SELECT 
+    id_vendeur, nom_vendeur, date_vente, montant_commission
+FROM v_commission_par_vendeur
+WHERE id_genre_user = 'USR0001'
+  AND date_vente BETWEEN '2025-01-01' AND '2025-12-31';
+
+-- somme
+SELECT SUM(montant_commission) AS total_commission_femmes
+FROM v_commission_par_vendeur
+WHERE id_genre_user = 'USR0002'
+  AND date_vente BETWEEN '2025-01-01' AND '2025-12-31';

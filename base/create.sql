@@ -207,3 +207,17 @@ CREATE TABLE commission (
     valeur DOUBLE PRECISION NOT NULL
 );
 
+-- 23 - 01 - 2025
+CREATE SEQUENCE seq_genre;
+
+CREATE TABLE genre (
+    id_genre VARCHAR PRIMARY KEY DEFAULT custom_seq(
+        'GNR' :: character varying,
+        'seq_genre' :: character varying,
+        4
+    ) NOT NULL,
+    nom VARCHAR NOT NULL
+);
+
+ALTER TABLE users
+ADD COLUMN id_genre_fk VARCHAR REFERENCES genre(id_genre);
