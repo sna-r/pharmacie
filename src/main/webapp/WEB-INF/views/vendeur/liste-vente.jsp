@@ -71,7 +71,7 @@
                                             <tbody>
                                                 <% 
                                                     // Récupérer les résultats de la recherche envoyée par le contrôleur
-                                                    VVenteClient[] ventes = (VVenteClient[]) request.getAttribute("listeVenteClient");
+                                                    VVenteClient[] ventes = (VVenteClient[]) request.getAttribute("produits");
                                                     
                                                     if (ventes != null) {
                                                         for (VVenteClient vente : ventes) {

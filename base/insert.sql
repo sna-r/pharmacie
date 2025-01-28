@@ -247,3 +247,11 @@ SET id_genre_fk = rg.id_genre
 FROM random_genres rg
 JOIN random_users ru ON rg.rn = ru.rn
 WHERE users.id_user = ru.id_user;
+
+-- 28 - 01 - 2025
+WITH produit_list AS (
+    SELECT id_produit, prix_unitaire FROM produit
+)
+INSERT INTO prix_produit_historique (id_produit_fk, prix,date_modification)
+SELECT id_produit, prix_unitaire, '2020-01-01 00:00:00'
+FROM produit_list;

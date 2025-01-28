@@ -5,7 +5,7 @@ package mg.itu.pharmacie.Models.Views;
 import mg.itu.pharmacie.Models.Generalisation.GeneralisationDb.AttributDb;
 import mg.itu.pharmacie.Models.Generalisation.GeneralisationDb.TableDb;
 @TableDb(name = "v_commission_par_vendeur")
-public class VVendeurListeResult {
+public class VVendeurListeResultTwo {
     
 
     @AttributDb(name = "id_vendeur")
@@ -20,7 +20,7 @@ public class VVendeurListeResult {
     private Double montantCommission;
 
     // Constructeur
-    public VVendeurListeResult() {
+    public VVendeurListeResultTwo() {
     }
 
     // Getters et Setters

@@ -221,3 +221,17 @@ CREATE TABLE genre (
 
 ALTER TABLE users
 ADD COLUMN id_genre_fk VARCHAR REFERENCES genre(id_genre);
+
+-- 28 - 01 - 2025
+CREATE SEQUENCE seq_prix_produit_historique;
+
+CREATE TABLE prix_produit_historique (
+    id_genre VARCHAR PRIMARY KEY DEFAULT custom_seq(
+        'PPH' :: character varying,
+        'seq_prix_produit_historique' :: character varying,
+        4
+    ) NOT NULL,
+    id_produit_fk VARCHAR REFERENCES produit(id_produit),
+    prix DOUBLE PRECISION,
+    date_modification TIMESTAMP DEFAULT NOW()
+);

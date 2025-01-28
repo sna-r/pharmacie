@@ -174,3 +174,21 @@ SELECT SUM(montant_commission) AS total_commission_femmes
 FROM v_commission_par_vendeur
 WHERE id_genre_user = 'USR0002'
   AND date_vente BETWEEN '2025-01-01' AND '2025-12-31';
+
+
+-- 28 - 01 - 2025
+CREATE OR REPLACE VIEW v_prix_produit_historique AS
+SELECT 
+    pph.id_genre,
+    pph.id_produit_fk,
+    p.nom AS nom_produit,
+    pph.prix,
+    TO_CHAR(pph.date_modification, 'DD Mon YYYY HH24:MI:SS') AS date_modification
+FROM 
+    prix_produit_historique pph
+JOIN 
+    produit p
+ON 
+    pph.id_produit_fk = p.id_produit;
+
+

@@ -15,9 +15,11 @@ import mg.itu.pharmacie.Models.Databases.MyConnection;
 import mg.itu.pharmacie.Models.Generalisation.GeneralisationDb.DB;
 import mg.itu.pharmacie.Models.Tables.ClientTable;
 import mg.itu.pharmacie.Models.Tables.ConseilMois;
+import mg.itu.pharmacie.Models.Tables.PrixProduitHistorique;
 import mg.itu.pharmacie.Models.Tables.Vente;
 import mg.itu.pharmacie.Models.Views.VClient;
 import mg.itu.pharmacie.Models.Views.VListeConseil;
+import mg.itu.pharmacie.Models.Views.VPrixProduitHistorique;
 import mg.itu.pharmacie.Models.Views.VProduitSelect;
 import mg.itu.pharmacie.Models.Views.VUsers;
 import mg.itu.pharmacie.Models.Views.VVenteClient;
@@ -237,7 +239,8 @@ public class RooterController {
     // 23 - 01 - 2025
     // liste-vente-vendeur
     @GetMapping("/liste-vente-vendeur")
-    public String liste_vente_vendeur(/*@RequestParam(defaultValue = "2025") String date,*/ Model model) throws Exception {
+    public String liste_vente_vendeur(/*@RequestParam(defaultValue = "2025") String date,*/ Model model)
+            throws Exception {
         // Connection connection = MyConnection.connectDefault();
         // DateHeure now = null;
         // if (date.length() > 0) {
@@ -252,5 +255,64 @@ public class RooterController {
         // VListeConseil[] listeConseil = (VListeConseil[]) DB.getList(new VListeConseil(), where, connection);
         // model.addAttribute("listeConseil", listeConseil);
         return "vendeur/liste-vente";
+    }
+
+    @GetMapping("/update-prix-produit")
+    public String update_prix_product(/* @RequestParam(defaultValue = "2025") String date, */ Model model)
+            throws Exception {
+
+        Connection connection = MyConnection.connectDefault();
+
+        // Récupérer la liste des produits
+        String whereProduit = ""; // Filtre si nécessaire
+        VProduitSelect[] produits = (VProduitSelect[]) DB.getList(new VProduitSelect(), whereProduit, connection);
+
+        // Ajouter les listes au modèle
+        model.addAttribute("produits", produits);
+        // model.addAttribute("clients", clients);
+        return "product/ajouter-prix";
+    }
+
+    @PostMapping("/modifier-prix-produit")
+    public String modifier_prix(@RequestParam String id_produit, @RequestParam String prix, Model model)
+            throws Exception {
+        PrixProduitHistorique prixProd = new PrixProduitHistorique();
+        // conseilMois.setRaison(raison);
+        prixProd.setId_produit_fk(id_produit);
+        prixProd.setPrix(Double.valueOf(prix));
+        Connection connection = MyConnection.connectDefault();
+
+        DB.insert(prixProd, connection);
+        String whereProduit = ""; // Filtre si nécessaire
+        VProduitSelect[] produits = (VProduitSelect[]) DB.getList(new VProduitSelect(), whereProduit, connection);
+
+        // Ajouter les listes au modèle
+        model.addAttribute("produits", produits);
+        // model.addAttribute("clients", clients);
+        return "product/ajouter-prix";
+    }
+    
+    
+    @GetMapping("/liste-prix-produit")
+
+    public String liste_prix_product(@RequestParam(defaultValue = "") String id_produit, Model model)
+            throws Exception {
+
+        Connection connection = MyConnection.connectDefault();
+ 
+        // Récupérer la liste des produits
+        String whereProduit = ""; // Filtre si nécessaire
+        if (id_produit.length() != 0) {
+            whereProduit = " where id_produit_fk = '"+id_produit+"'";
+        }
+        VPrixProduitHistorique[] produits = (VPrixProduitHistorique[]) DB.getList(new VPrixProduitHistorique(), whereProduit, connection);
+        VProduitSelect[] prod = (VProduitSelect[]) DB.getList(new VProduitSelect(), "", connection);
+
+        // Ajouter les listes au modèle
+        model.addAttribute("prod", prod);
+        // Ajouter les listes au modèle
+        model.addAttribute("produits", produits);
+        // model.addAttribute("clients", clients);
+        return "product/liste-prix";
     }
 }

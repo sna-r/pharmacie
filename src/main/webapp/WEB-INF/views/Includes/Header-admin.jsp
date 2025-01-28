@@ -62,6 +62,19 @@
           <a class="nav-link pl-3" href="/vente-product"><span class="ml-1">Liste</span></a>
         </ul>
       </li>
+      
+      <li class="nav-item dropdown">
+        <a href="#produit" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+          <!-- <i class="fe fe-chart fe-16"></i> -->
+          <span class="ml-3 item-text">Produit</span>
+        </a>
+        <ul class="collapse list-unstyled pl-4 w-100" id="produit">
+          <a class="nav-link pl-3" href="/update-prix-produit"><span class="ml-1">Ajoute prix</span></a>
+          <a class="nav-link pl-3" href="/liste-prix-produit"><span class="ml-1">Liste</span></a>
+          <!--
+          <a class="nav-link pl-3" href="/liste-conseil-anne"><span class="ml-1">Annee</span></a> -->
+        </ul>
+      </li>
       <li class="nav-item dropdown">
         <a href="#conseil" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
           <!-- <i class="fe fe-chart fe-16"></i> -->
