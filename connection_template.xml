@@ -1,0 +1,10 @@
+<!-- connectionPostgres.xml -->
+<connectionConfig>
+    <ip>host-ip</ip>
+    <port>host-port</port>
+    <databaseName>database</databaseName>
+    <userName>username</userName>
+    <password>password</password>
+</connectionConfig>
+
+
